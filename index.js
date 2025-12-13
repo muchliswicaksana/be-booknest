@@ -5,9 +5,6 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 
-if (!fs.existsSync("uploads")) {
-  fs.mkdirSync("uploads");
-}
 
 const app = express();
 const db = mysql.createConnection({
@@ -16,6 +13,10 @@ const db = mysql.createConnection({
   password: "",
   database: "bookstore",
 });
+
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
